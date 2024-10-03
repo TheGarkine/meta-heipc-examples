@@ -1,0 +1,9 @@
+[Unit]
+Description=GRPC Server
+
+[Service]
+ExecStart=/usr/bin/grpc_server
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

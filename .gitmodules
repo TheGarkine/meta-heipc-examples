@@ -1,0 +1,3 @@
+[submodule "meta-heipc"]
+	path = meta-heipc
+	url = git@github.com:TheGarkine/meta-heipc.git

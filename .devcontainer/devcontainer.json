@@ -1,0 +1,27 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "containerEnv": {
+    "KAS_BUILD_DIR": "/build"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "mounts": [
+    // You need an extra docker volume to be created with: docker volume create max-kas-build
+    {
+      "source": "heipc-build",
+      "target": "/build",
+      "type": "volume"
+    }
+  ],
+  "runArgs": [
+    "--network=host"
+  ],
+	"remoteUser": "kas"
+}

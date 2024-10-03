@@ -1,0 +1,9 @@
+# local layers
+poky/
+meta-openembedded/
+
+# build directory
+build/
+
+# vscode
+.vscode/

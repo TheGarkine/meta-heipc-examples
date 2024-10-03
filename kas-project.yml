@@ -1,0 +1,51 @@
+header:
+  version: 11
+
+distro: poky
+target:
+  - heipc-example-image
+
+machine: qemuarm64
+
+local_conf_header:
+  meta-base: |
+    USER_CLASSES ?= "buildstats"
+    INIT_MANAGER = "systemd"
+    PACKAGE_CLASSES ?= "package_ipk"
+
+    TOOLCHAIN_TARGET_TASK:append = " heipc-cpp-server-lib-python "
+    TOOLCHAIN_HOST_TASK:append = " nativesdk-heipc-cpp-server-lib-python "
+
+    TOOLCHAIN_TARGET_TASK:append = " heipc-cpp-server-lib-cpp "
+    TOOLCHAIN_HOST_TASK:append = " nativesdk-heipc-cpp-server-lib-cpp "
+
+bblayers_conf_header:
+  meta-heipc: |
+    BBLAYERS_NON_REMOVABLE ?= " \
+      /work/poky/meta \
+      /work/poky/meta-poky \
+      /work/meta-maxbox \
+      "
+
+repos:
+  meta-openembedded:
+    url: "https://git.openembedded.org/meta-openembedded"
+    refspec: scarthgap
+    layers:
+      meta-oe:
+      meta-networking:
+      meta-python:
+      meta-perl:
+      meta-filesystems:
+      meta-webserver:
+  poky:
+    url: "https://git.yoctoproject.org/git/poky"
+    refspec: scarthgap
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+  meta-heipc:
+    path: "./meta-heipc"
+  meta-heipc-examples:
+    path: "./meta-heipc-examples"
